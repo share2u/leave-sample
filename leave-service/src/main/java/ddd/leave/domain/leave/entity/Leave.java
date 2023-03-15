@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 请假单信息
+ * 聚合根 请假单信息
  */
 @Data
 public class Leave {
@@ -29,6 +29,10 @@ public class Leave {
     ApprovalInfo currentApprovalInfo;
     List<ApprovalInfo> historyApprovalInfos;
 
+    /**
+     * 充血模型
+     * @return
+     */
     public long getDuration() {
         return endTime.getTime() - startTime.getTime();
     }

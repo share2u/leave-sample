@@ -46,7 +46,6 @@ public class LeaveDomainService {
         }
         leaveRepositoryInterface.save(leaveFactory.createLeavePO(leave));
     }
-
     @Transactional
     public void submitApproval(Leave leave, Approver approver) {
         LeaveEvent event;

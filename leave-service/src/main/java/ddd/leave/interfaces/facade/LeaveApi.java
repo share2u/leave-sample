@@ -2,7 +2,6 @@ package ddd.leave.interfaces.facade;
 
 import ddd.leave.application.service.LeaveApplicationService;
 import ddd.leave.domain.leave.entity.Leave;
-import ddd.leave.domain.person.entity.Person;
 import ddd.leave.infrastructure.common.api.Response;
 import ddd.leave.interfaces.assembler.LeaveAssembler;
 import ddd.leave.interfaces.dto.LeaveDTO;
@@ -21,6 +20,12 @@ public class LeaveApi {
     @Autowired
     LeaveApplicationService leaveApplicationService;
 
+    /**
+     * 创建请假单
+     * 1、请假人填写请假单提交审批；
+     * 2、根据请假人身份、请假类型和请假天数进行校验并确定审批规则；
+     * 3、根据审批规则确定审批人，逐级提交上级审批，逐级核批通过则完成审批，否则审批不通过则退回申请人。
+     */
     @PostMapping
     public Response createLeaveInfo(LeaveDTO leaveDTO){
         Leave leave = LeaveAssembler.toDO(leaveDTO);
